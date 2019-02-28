@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.QFPremissionDemoActivity">
 
     <Button
-        android:id="@+id/qfy_permission"
+        android:id="@+id/qfy_contacts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="权限测试"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="获取读取联系人权限"/>
 
     <Button
-        android:id="@+id/qfy_log"
+        android:id="@+id/qfy_permission_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Log测试"
-        app:layout_constraintTop_toBottomOf="@id/qfy_permission"/>
+        app:layout_constraintTop_toBottomOf="@+id/qfy_contacts"
+        android:text="获取权限组"/>
 
 </android.support.constraint.ConstraintLayout>
