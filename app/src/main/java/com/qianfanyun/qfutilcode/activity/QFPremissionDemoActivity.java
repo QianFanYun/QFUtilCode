@@ -1,5 +1,7 @@
 package com.qianfanyun.qfutilcode.activity;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,13 +38,10 @@ public class QFPremissionDemoActivity extends AppCompatActivity implements View.
 
 
     private void qfy_requestPermission(String... permission) {
-
         QFPermissionManager.requestPermission(this, new QFPermissionRequestListener() {
             @Override
             public void onGranted() {
-
                 Toast.makeText(QFPremissionDemoActivity.this, "授权成功", Toast.LENGTH_LONG).show();
-
             }
 
             @Override
@@ -57,9 +56,23 @@ public class QFPremissionDemoActivity extends AppCompatActivity implements View.
 
             @Override
             public String alwaysDeniedMessage() {
-                return getString(R.string.permission_read_phone) + getString(R.string.app_name) + getString(R.string.permission_read_phone2) + getString(R.string.app_name);
+                return "去往设置页面授权";
             }
-
         },permission);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case QFPermissionManager.REQUEST_CODE_SETTING:
+                if (QFPermissionManager.hasPermissions(this, Permission.READ_PHONE_STATE)) {
+                    // 有对应的权限
+                    Toast.makeText(QFPremissionDemoActivity.this, "onActivityResult:授权成功", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(QFPremissionDemoActivity.this, "onActivityResult:授权失败", Toast.LENGTH_LONG).show();
+                }
+
+                break;
+        }
     }
 }
