@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QFUtilCode</string>
+    <string name="permission_read_phone">使用电话权限获取设备ID、IMEI、IMSI等，以保证帐号登录的安全性。请在设置-应用-</string>
+    <string name="permission_read_phone2">-权限中开启获取手机信息权限，以正常登录</string>
 </resources>

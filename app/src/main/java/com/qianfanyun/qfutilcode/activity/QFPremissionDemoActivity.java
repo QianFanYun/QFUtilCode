@@ -1,7 +1,5 @@
 package com.qianfanyun.qfutilcode.activity;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +8,6 @@ import android.widget.Toast;
 import com.qianfanyun.qfutilcode.R;
 import com.qianfanyun.utilcode.qfy_permission.QFPermissionManager;
 import com.qianfanyun.utilcode.qfy_permission.QFPermissionRequestListener;
-import com.yanzhenjie.permission.RequestExecutor;
 import com.yanzhenjie.permission.runtime.Permission;
 
 
@@ -29,7 +26,7 @@ public class QFPremissionDemoActivity extends AppCompatActivity implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.qfy_contacts:
-                qfy_requestPermission(Permission.READ_CONTACTS, Permission.WRITE_CONTACTS);
+                qfy_requestPermission(Permission.READ_PHONE_STATE);
                 break;
             case R.id.qfy_permission_group:
                 qfy_requestPermission(Permission.Group.LOCATION);
@@ -54,45 +51,15 @@ public class QFPremissionDemoActivity extends AppCompatActivity implements View.
             }
 
             @Override
-            public void showDeniedInfo(final RequestExecutor executor) {
-                new AlertDialog.Builder(QFPremissionDemoActivity.this)
-                        .setCancelable(false)
-                        .setTitle("权限申请提醒")
-                        .setMessage("这里需要联系人权限")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                executor.execute();
-                            }
-                        })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                executor.cancel();
-                            }
-                        }).show();
+            public String showPermissionRational() {
+                return "为了更好的体验APP，需要获取手机相关信息";
             }
 
             @Override
-            public void alwaysDenied() {
-                new AlertDialog.Builder(QFPremissionDemoActivity.this)
-                        .setCancelable(false)
-                        .setMessage("前往设置里开启权限？")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                QFPermissionManager.goSetting(QFPremissionDemoActivity.this);
-
-                            }
-                        })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        }).show();
+            public String alwaysDeniedMessage() {
+                return getString(R.string.permission_read_phone) + getString(R.string.app_name) + getString(R.string.permission_read_phone2) + getString(R.string.app_name);
             }
+
         },permission);
     }
 }

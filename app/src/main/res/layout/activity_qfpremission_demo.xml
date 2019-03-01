@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="获取读取联系人权限"/>
+        android:text="获取读取手机权限"/>
 
     <Button
         android:id="@+id/qfy_permission_group"

@@ -21,13 +21,13 @@ public interface QFPermissionRequestListener {
     void onDenied();
 
     /**
-     * 权限被拒绝后的说明信息，用于询问用户是否继续授权
+     * 权限被拒绝后下次再次请求的时候，添加说明，表明申请权限的原因
      */
-    void showDeniedInfo(RequestExecutor executor);
+    String showPermissionRational();
 
     /**
-     * 总是被拒绝，弹窗提示用户去系统设置中授权
+     * 总是被拒绝（用户选择了“不再提示”），这里可以设置提示信息提示用户去设置授权
      */
-    void alwaysDenied();
+    String alwaysDeniedMessage();
 
 }

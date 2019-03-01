@@ -2,7 +2,9 @@ package com.qianfanyun.utilcode.qfy_permission;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
@@ -49,7 +51,7 @@ public final class QFPermissionManager {
                         @Override
                         public void showRationale(Context context, List<String> data, final RequestExecutor executor) {
                             // 当用户拒绝之后，下一次请求此权限的时候，作出说明，以便用户判断是否需要授权
-                            listener.showDeniedInfo(executor);
+                            showRationalDialog(context, listener, executor);
                         }
                     })
                     .onGranted(new Action<List<String>>() {
@@ -63,8 +65,8 @@ public final class QFPermissionManager {
                         public void onAction(List<String> data) {
 
                             if(AndPermission.hasAlwaysDeniedPermission(context,permissionGroup)) {
-                                // 用户勾选了"不再提示"，并拒绝
-                                listener.alwaysDenied();
+                                // 用户勾选了"不再提示"，并拒绝，这个时候可以提示用户去设置里允许
+                                showSettingDialog(context, listener);
                             } else {
                                 listener.onDenied();
                             }
@@ -74,6 +76,57 @@ public final class QFPermissionManager {
         } else {
             listener.onGranted();
         }
+    }
+
+    /**
+     * 用户拒绝后，下次请求弹框说明，申请权限的原因，并引导用户去收取
+     *
+     * @param context
+     * @param listener
+     */
+    private static void showRationalDialog(final Context context, QFPermissionRequestListener listener, final RequestExecutor executor) {
+        new AlertDialog.Builder(context)
+                .setCancelable(false)
+                .setTitle("权限申请提醒")
+                .setMessage(listener.showPermissionRational())
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        executor.execute();
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        executor.cancel();
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
+    /**
+     * 引导用户去设置页面授权
+     * @param context
+     * @param listener
+     */
+    private static void showSettingDialog(final Context context, QFPermissionRequestListener listener) {
+        new AlertDialog.Builder(context)
+                .setCancelable(false)
+                .setMessage(listener.alwaysDeniedMessage())
+                .setPositiveButton("去设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        QFPermissionManager.goSetting((Activity) context);
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
     /**
