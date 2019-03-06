@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.qianfanyun.qfutilcode.R;
+import com.qianfanyun.utilcode.qfy_permission.QFPermissionConstants;
 import com.qianfanyun.utilcode.qfy_permission.QFPermissionManager;
 import com.qianfanyun.utilcode.qfy_permission.QFPermissionRequestListener;
-import com.yanzhenjie.permission.runtime.Permission;
 
 
 public class QFPremissionDemoActivity extends AppCompatActivity implements View.OnClickListener {
@@ -28,10 +28,10 @@ public class QFPremissionDemoActivity extends AppCompatActivity implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.qfy_contacts:
-                qfy_requestPermission(Permission.READ_PHONE_STATE);
+                qfy_requestPermission(QFPermissionConstants.READ_PHONE_STATE);
                 break;
             case R.id.qfy_permission_group:
-                qfy_requestPermission(Permission.Group.LOCATION);
+                qfy_requestPermission(QFPermissionConstants.Group.LOCATION);
                 break;
         }
     }
@@ -65,7 +65,7 @@ public class QFPremissionDemoActivity extends AppCompatActivity implements View.
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         switch (requestCode) {
             case QFPermissionManager.REQUEST_CODE_SETTING:
-                if (QFPermissionManager.hasPermissions(this, Permission.READ_PHONE_STATE)) {
+                if (QFPermissionManager.hasPermissions(this, QFPermissionConstants.READ_PHONE_STATE)) {
                     // 有对应的权限
                     Toast.makeText(QFPremissionDemoActivity.this, "onActivityResult:授权成功", Toast.LENGTH_LONG).show();
                 } else {

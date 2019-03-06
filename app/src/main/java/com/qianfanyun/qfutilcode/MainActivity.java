@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.qianfanyun.qfutilcode.activity.LogDemoActivity;
 import com.qianfanyun.qfutilcode.activity.QFPremissionDemoActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.qfy_permission:
 
                 startActivity(new Intent(this, QFPremissionDemoActivity.class));
+                break;
+            case R.id.qfy_log:
+
+                startActivity(new Intent(this, LogDemoActivity.class));
                 break;
         }
 
