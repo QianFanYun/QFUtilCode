@@ -21,7 +21,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // QFLogUtils.init();
         // 如果需要保存log信息到本地，需要申请存储权限
         QFLogUtils.newBuilder()
                 .tag("QF_LOG_TEST")

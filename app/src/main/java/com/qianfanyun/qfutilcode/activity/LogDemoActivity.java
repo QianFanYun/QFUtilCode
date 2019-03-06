@@ -10,6 +10,9 @@ import com.qianfanyun.utilcode.qfy_permission.QFPermissionConstants;
 import com.qianfanyun.utilcode.qfy_permission.QFPermissionManager;
 import com.qianfanyun.utilcode.qfy_permission.QFPermissionRequestListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LogDemoActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
@@ -57,6 +60,11 @@ public class LogDemoActivity extends AppCompatActivity implements View.OnClickLi
                 QFLogUtils.i("info");
                 QFLogUtils.w("warn");
                 QFLogUtils.e("error");
+
+                List<String> list = new ArrayList<>();
+                list.add("hello");
+                list.add("world");
+                QFLogUtils.d(list);
                 break;
             case R.id.btn_tag:
                 QFLogUtils.v("LUYS","verbose");
