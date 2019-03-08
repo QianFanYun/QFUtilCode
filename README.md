@@ -11,7 +11,6 @@ QFLogUtils.newBuilder()
 ```
 
 ### [QFPermissionManager](https://github.com/QianFanYun/QFUtilCode/blob/5448b93325360b34e0a6feeba7fae89059ef29b8/utilcode/src/main/java/com/qianfanyun/utilcode/qfy_permission/QFPermissionManager.java) -> [Demo](https://github.com/QianFanYun/QFUtilCode/blob/5448b93325360b34e0a6feeba7fae89059ef29b8/app/src/main/java/com/qianfanyun/qfutilcode/activity/QFPremissionDemoActivity.java)
-[QFPermissionRequestListener](https://github.com/QianFanYun/QFUtilCode/blob/5448b93325360b34e0a6feeba7fae89059ef29b8/utilcode/src/main/java/com/qianfanyun/utilcode/qfy_permission/QFPermissionRequestListener.java)
 
 方法 | 说明
 ---|---
