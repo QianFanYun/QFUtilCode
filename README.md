@@ -1,3 +1,20 @@
+### 引入
+Add it in your root build.gradle at the end of repositories:
+```
+ allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+Add the dependency
+```
+dependencies {
+	 implementation 'com.github.QianFanYun:QFUtilCode:1.0.1'
+}
+```
+
 ### [QFLogUtils.java](https://github.com/QianFanYun/QFUtilCode/blob/143f3a2b44463837bc23dd0ec64fda992044aac4/utilcode/src/main/java/com/qianfanyun/utilcode/qfy_log/QFLogUtils.java)  -> [demo](https://github.com/QianFanYun/QFUtilCode/blob/143f3a2b44463837bc23dd0ec64fda992044aac4/app/src/main/java/com/qianfanyun/qfutilcode/activity/LogDemoActivity.java)
 #### 初始化
 Application的onCreate方法里添加如下代码
