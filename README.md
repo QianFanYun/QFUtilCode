@@ -9,25 +9,7 @@ QFLogUtils.newBuilder()
                 .saveTag("ZOE_LUYS") // 保存指定的TAG信息
                 .build();
 ```
-#### 使用
-```
-// 默认Tag
-QFLogUtils.v("verbose");
-// 自定义局部TAG
-QFLogUtils.e("LUYS","error");
-// JSON
-QFLogUtils.json(json);
-// XML
-QFLogUtils.xml(xmlDate);
-// 打印List
-List<String> list = new ArrayList<>();
-...
-QFLogUtils.d(list);
-// 打印Map
-Map<string, string=""> map = new HashMap<>();
-...
-QFLogUtils.d(map);
-```
+
 ### [QFPermissionManager](https://github.com/QianFanYun/QFUtilCode/blob/5448b93325360b34e0a6feeba7fae89059ef29b8/utilcode/src/main/java/com/qianfanyun/utilcode/qfy_permission/QFPermissionManager.java) -> [Demo](https://github.com/QianFanYun/QFUtilCode/blob/5448b93325360b34e0a6feeba7fae89059ef29b8/app/src/main/java/com/qianfanyun/qfutilcode/activity/QFPremissionDemoActivity.java)
 [QFPermissionRequestListener](https://github.com/QianFanYun/QFUtilCode/blob/5448b93325360b34e0a6feeba7fae89059ef29b8/utilcode/src/main/java/com/qianfanyun/utilcode/qfy_permission/QFPermissionRequestListener.java)
 
