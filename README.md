@@ -3,6 +3,7 @@
 Application的onCreate方法里添加如下代码
 ```
 QFLogUtils.newBuilder()
+                .debug(BuildConfig.DEBUG)
                 .tag("")// 配置全局TAG 默认为“QF_LOG”
                 .isSaveLocal(true)// 是否开启保存Log信息到本地
                 .savePath("")// 设置保存路径
