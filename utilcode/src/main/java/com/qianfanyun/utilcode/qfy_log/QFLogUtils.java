@@ -26,6 +26,11 @@ import org.w3c.dom.Text;
 public class QFLogUtils {
 
     /**
+     * debug 模式开启LOG
+     */
+    private final boolean debug;
+
+    /**
      * 是否开启保存LOG信息到本地
      */
     private final boolean isSaveLocal;
@@ -51,6 +56,7 @@ public class QFLogUtils {
         savePath = builder.savePath;
         saveTag = builder.saveTag;
         tag = builder.tag;
+        debug = builder.debug;
         init();
     }
 
@@ -61,6 +67,7 @@ public class QFLogUtils {
 
     public static class Builder {
 
+        boolean debug;
         boolean isSaveLocal;
         String saveTag;
         String savePath;
@@ -68,6 +75,11 @@ public class QFLogUtils {
 
         private Builder() {
 
+        }
+
+        public Builder debug(boolean debug) {
+            this.debug = debug;
+            return this;
         }
 
         public Builder saveTag(String saveTag) {
@@ -108,7 +120,7 @@ public class QFLogUtils {
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
             @Override
             public boolean isLoggable(int priority, @Nullable String tag) {
-                return BuildConfig.DEBUG;
+                return debug;
             }
         });
 
